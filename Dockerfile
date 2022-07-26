@@ -21,4 +21,4 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
 RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
     git clone https://github.com/RT-Thread/packages.git  /env/packages/packages 
 ENV PATH $PATH:/env/tools/scripts 
-RUN echo "ln  /env ~/.env  -s"  >> /etc/profile
+RUN echo "if [ -d "~/.env" ] ln  /env ~/.env  -s"  >> /etc/bash.bashrc
