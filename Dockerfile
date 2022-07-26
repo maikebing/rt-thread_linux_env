@@ -18,6 +18,6 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
     cd /stm32flash-code && make && mv stm32flash /usr/bin/  && \
     cd / && rm /stm32flash-code  -rf && \
     stm32flash -h
-RUN git clone https://github.com/RT-Thread/env.git  ~/.env/tools/scripts && \
-    git clone https://github.com/RT-Thread/packages.git  /root/.env/packages/packages
-ENV PATH $PATH:~/.env/tools/scripts
+RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
+    git clone https://github.com/RT-Thread/packages.git  /env/packages/packages
+ENV PATH $PATH:/env/tools/scripts
