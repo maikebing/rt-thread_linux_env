@@ -19,7 +19,5 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
     cd / && rm /stm32flash-code  -rf && \
     stm32flash -h
 RUN git clone https://github.com/RT-Thread/env.git  ~/.env/tools/scripts && \
-    echo "export PATH=$PATH:~/.env/tools/scripts"  >  ~/.env/env.sh && \
-    source  ~/.env/env.sh &&  \
     git clone https://github.com/RT-Thread/packages.git  /root/.env/packages/packages
-
+ENV PATH $PATH:~/.env/tools/scripts
