@@ -22,6 +22,5 @@ RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
     git clone https://github.com/RT-Thread/packages.git  /env/packages/packages 
 ENV PATH $PATH:/env/tools/scripts 
 RUN echo " if [ ! -f ~/.env ]; then ln  /env ~/.env  -s;fi"  >> /etc/bash.bashrc 
-RUN sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/t
-ools/scripts/cmds/.config
+RUN sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
 
