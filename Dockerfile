@@ -21,6 +21,6 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
 RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
     git clone https://github.com/RT-Thread/packages.git  /env/packages/packages 
 ENV PATH $PATH:/env/tools/scripts 
-RUN echo " if [ ! -f ~/.env ]; then ln  /env ~/.env  -s;fi"  >> /etc/bash.bashrc 
+RUN echo " if [ ! -d ~/.env ]; then ln  /env ~/.env  -s;fi"  >> /etc/bash.bashrc 
 RUN sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
 
