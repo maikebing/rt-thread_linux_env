@@ -1,6 +1,19 @@
 # action.yml
 name: 'RT-Thread CI Action'
 description: 'RT-Thread CI Action'
+author: 'MysticBoy<mysticboy@live.com>'
+branding:
+  icon: 'box'
+  color: 'blue'
+inputs:
+  TARGET:
+    description: 'scons -target=?'
+    default: mdk5
+    required: true
+  CHECKSTD:
+    default: c99
+    required: true
+    description: 'cppcheck std'
 runs:
   using: 'docker'
   image: 'Dockerfile'
