@@ -11,13 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: pkgs
-        run: pkgs --help
-      - name: scons --printenv
-        uses: ./
+      - name: pkgs --help
+        uses: ./github/work
         id: run-docker
         with:
-          image: docker
+          image: maikebing/rt-thread_linux_env
           options: -v ${{ github.workspace }}:/github/work
           run: |
              pkgs --help
