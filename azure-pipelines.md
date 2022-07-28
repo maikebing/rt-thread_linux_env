@@ -5,8 +5,8 @@ container:
  
 
 steps:
-- script:  if [ ! -f ~/.env ]; then ln  /env ~/.env  -s;fi
-  displayName: "Init env"
+- script: rm ~/.env -f;ln /env ~/.env -s -f;export PATH=$PATH:~/.env/tools/scripts
+  displayName: "Setup RT-Thread Env"
 - script:  pkgs --printenv;pkgs  --list;pkgs --update
   displayName: "Checkout all packages"
   workingDirectory: $(Build.SourcesDirectory)
