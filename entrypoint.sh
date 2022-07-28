@@ -1,11 +1,8 @@
 #!/bin/sh
-if [ ! -d ~/.env ]; then
- ln  /env ~/.env  -s
- fi
-export PATH=$PATH:~/.env/tools/scripts
+ln  /env $HOME/.env  -s
+export PATH=$PATH:$HOME/.env/tools/scripts
 sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
-pwd
-if [ -f SConstruct ]; then
+if [ -r SConstruct ]; then
     pkgs --printenv
     pkgs --list
     pkgs --update
@@ -19,5 +16,6 @@ if [ -f SConstruct ]; then
     scons 
     fi
 else
+pkgs --help
 echo "fogret checkout?"    
 fi    
