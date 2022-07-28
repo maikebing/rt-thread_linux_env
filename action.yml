@@ -2,5 +2,5 @@
 name: 'RT-Thread CI Action'
 description: 'RT-Thread CI Action'
 runs:
-  using: 'ubuntu'
+  using: 'docker'
   image: 'Dockerfile'
