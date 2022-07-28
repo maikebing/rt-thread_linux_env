@@ -6,11 +6,11 @@ branding:
   icon: 'box'
   color: 'blue'
 inputs:
-  target:
+  TARGET:
     description: 'scons -target=?'
     default: mdk5
     required: true
-  std:
+  STD:
     default: c99
     required: true
     description: 'cppcheck std'
