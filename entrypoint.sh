@@ -1,11 +1,4 @@
 #!/usr/bin/env bash
-
-if [ ! -z $INPUT_USERNAME ];
-then echo $INPUT_PASSWORD | docker login $INPUT_REGISTRY -u $INPUT_USERNAME --password-stdin
-fi
-
-if [ ! -z $INPUT_DOCKER_NETWORK ];
-then INPUT_OPTIONS="$INPUT_OPTIONS --network $INPUT_DOCKER_NETWORK"
-fi
-
-exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" $INPUT_OPTIONS --entrypoint=$INPUT_SHELL $INPUT_IMAGE -c "${INPUT_RUN//$'\n'/;}"
+if [ ! -d ~/.env ]; then ln  /env ~/.env  -s;fi
+export PATH=$PATH:~/.env/tools/scripts
+sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
