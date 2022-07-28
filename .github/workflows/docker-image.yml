@@ -1,0 +1,23 @@
+name: Docker Run Action Tests
+
+on:
+  push:
+    branches:
+      - maikebing-patch-1
+  pull_request:
+
+jobs:
+  volume-mount-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: pkgs
+        run: pkgs --help
+      - name: scons --printenv
+        uses: ./
+        id: run-docker
+        with:
+          image: docker
+          options: -v ${{ github.workspace }}:/github/work
+          run: |
+             pkgs --help
