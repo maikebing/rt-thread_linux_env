@@ -9,7 +9,7 @@ RUN apt-get update -y && \
     python3-pip  python3-requests  python-requests -y   \
     scons && \
     apt-get clean -y 
-RUN cd /tmp/ &&  wget https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/6-2016q4/gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2 && \
+RUN cd /tmp/ &&  wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/6-2016q4/gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2 && \
     tar xf ./gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2 && \
     mv gcc-arm-none-eabi-6_2-2016q4/ /opt/ && \
     rm ./gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2 && \
@@ -20,7 +20,6 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
     stm32flash -h
 RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
     git clone https://github.com/RT-Thread/packages.git  /env/packages/packages 
-ENV PATH $PATH:/env/tools/scripts 
-RUN echo " if [ ! -d ~/.env ]; then ln  /env ~/.env  -s;fi"  >> /etc/bash.bashrc 
-RUN sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
-
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]

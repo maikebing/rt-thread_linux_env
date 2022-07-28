@@ -1,0 +1,19 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "maikebing-patch-1" ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Setup RT-Thread
+      uses: maikebing/rt-thread_linux_env@maikebing-patch-1 
+      with: 
+           TARGET: 'mdk5'
+           CPPCHECK: '--enable=all --std=c99 applications/'
+ 

@@ -1,0 +1,23 @@
+# action.yml
+name: 'RT-Thread CI Action'
+description: 'RT-Thread CI Action'
+author: 'maikebing<mysticboy@live.com>'
+branding:
+  icon: 'box'
+  color: 'blue'
+inputs:
+  TARGET:
+    description: 'scons -target=?'
+    default: mdk5
+    required: true
+  CPPCHECK:
+    default: --enable=all --std=c99 applications/ 
+    required: false
+    description: 'cppcheck  options'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.target }}
+    - ${{ inputs.std }}
+  
