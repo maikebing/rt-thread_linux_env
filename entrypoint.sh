@@ -4,17 +4,16 @@ if [ ! -d ~/.env ]; then
  fi
 export PATH=$PATH:~/.env/tools/scripts
 sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
-
+pwd
 if [ -f SConstruct ]; then
     pkgs --printenv
-    pkgs  --list
+    pkgs --list
     pkgs --update
-    if [[ -z "${CPPCHECK}" ]]; then
-    cppcheck ${CPPCHECK} 
+    if [ -z "${CPPCHECK}" ]; then
+        cppcheck ${CPPCHECK} 
     fi
 
-    
-    if [[ -z "${TARGET}" ]]; then
+    if [-z "${TARGET}" ]; then
     scons --target=${TARGET}
     else
     scons 

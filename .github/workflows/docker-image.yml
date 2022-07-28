@@ -1,21 +1,19 @@
-name: Docker Run Action Tests
+name: C/C++ CI
 
 on:
   push:
-    branches:
-      - maikebing-patch-1
-  pull_request:
+    branches: [ "maikebing-patch-1" ]
+
 
 jobs:
-  volume-mount-test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: pkgs --help
-        uses: ./
-        id: run-docker
-        with:
-          image: maikebing/rt-thread_linux_env
-          options: -v ${{ github.workspace }}:/github/work
-          run: |
-             pkgs --help
+    - name: scons
+      uses: actions/checkout@v3
+    - name: Setup RT-Thread
+      uses: maikebing/rt-thread_linux_env@maikebing-patch-1 
+      with: 
+           TARGET: 'mdk5'
+           CPPCHECK: '--enable=all --std=c99 applications/'
+ 
