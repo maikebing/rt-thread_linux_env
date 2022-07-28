@@ -5,7 +5,7 @@ if [ ! -d ~/.env ]; then
 export PATH=$PATH:~/.env/tools/scripts
 sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
 
-if [-f SConstruct]; then
+if [ -f SConstruct ]; then
     pkgs --printenv
     pkgs  --list
     pkgs --update
