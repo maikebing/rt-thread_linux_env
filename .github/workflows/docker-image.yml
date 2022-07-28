@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: pkgs --help
-        uses: ./github/work
+        uses: ./
         id: run-docker
         with:
           image: maikebing/rt-thread_linux_env
