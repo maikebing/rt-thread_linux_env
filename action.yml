@@ -10,10 +10,10 @@ inputs:
     description: 'scons -target=?'
     default: mdk5
     required: true
-  STD:
-    default: c99
-    required: true
-    description: 'cppcheck std'
+  CPPCHECK:
+    default: --enable=all --std=c99 applications/ 
+    required: false
+    description: 'cppcheck  options'
 runs:
   using: 'docker'
   image: 'Dockerfile'
