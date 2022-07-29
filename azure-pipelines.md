@@ -1,19 +1,14 @@
 ``` yml 
 container:
   image: maikebing/rt-thread_linux_env:latest
-  options: --hostname container-test 
- 
-
 steps:
-- script: rm ~/.env -f;ln /env ~/.env -s -f;export PATH=$PATH:~/.env/tools/scripts
-  displayName: "Setup RT-Thread Env"
-- script:  pkgs --printenv;pkgs  --list;pkgs --update
-  displayName: "Checkout all packages"
+- bash: rm $HOME/.env -f; ln /env $HOME/.env -s;export PATH=$PATH:$HOME/.env/tools/scripts/:/env/tools/scripts/;pkgs --update
+  displayName: "Checkout all packages "
   workingDirectory: $(Build.SourcesDirectory)
-- script: cppcheck --enable=all --std=c99  applications/ 
+- bash: cppcheck --enable=all --std=c99  applications/ 
   displayName: "Static Code Analysis"
   workingDirectory: $(Build.SourcesDirectory)
-- script: scons --target=mdk5 
+- bash: scons --target=mdk5 
   workingDirectory: $(Build.SourcesDirectory)
   displayName: "Build MDK5 Project"
 - task: PublishBuildArtifacts@1
