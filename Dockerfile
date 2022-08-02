@@ -1,4 +1,5 @@
 FROM jenkins/inbound-agent
+USER root
 LABEL author maikebing <mysticboy@live.com>
 ENV DEBIAN_FRONTEND noninteractive
 ENV RTT_EXEC_PATH /opt/gcc-arm-none-eabi-6_2-2016q4/bin/
