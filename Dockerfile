@@ -21,10 +21,11 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
     stm32flash -h
 RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
     git clone https://github.com/RT-Thread/packages.git  /env/packages/packages 
+RUN  sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config    
 USER jenkins
 ENV  PATH=$PATH:$HOME/.env/tools/scripts
-RUN   ln  /env $HOME/.env  -s && \
-      sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
+RUN  ln  /env $HOME/.env  -s  
+     
 
 
  
