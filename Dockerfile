@@ -1,10 +1,10 @@
-FROM jenkins/inbound-agent
+FROM jenkins/jenkins
 USER root
 LABEL author maikebing <mysticboy@live.com>
 ENV DEBIAN_FRONTEND noninteractive
 ENV RTT_EXEC_PATH /opt/gcc-arm-none-eabi-6_2-2016q4/bin/
-RUN apt-get update -y && \
-    apt-get install git   wget bzip2 \
+RUN apt-get update -y && apt-get install aptitude -y \
+    aptitude install git  aptitude  wget bzip2 \
     build-essential  libncurses-dev  cppcheck   \
     gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi  qemu-system-arm    \
     python3-pip  python3-requests  python-requests -y   \
@@ -21,6 +21,10 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
     stm32flash -h
 RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
     git clone https://github.com/RT-Thread/packages.git  /env/packages/packages 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+USER jenkins
+ENV  PATH=$PATH:$HOME/.env/tools/scripts
+RUN   ln  /env $HOME/.env  -s && \
+      sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
+
+
+ 
