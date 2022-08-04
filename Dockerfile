@@ -11,7 +11,7 @@ ENV RTT_EXEC_PATH /opt/gcc-arm-none-eabi-6_2-2016q4/bin/
 #          $(lsb_release -cs) stable" |  tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 RUN apt-get update -y  &&  \
-     apt-get  install python3-pip  python3-requests python  -y &&  pip install  requests    &&  \
+     apt-get  install python3-pip  python3-requests python  python-pip -y && echo "pip" && pip install requests  &&  && echo "end_pip" && \
     apt-get clean -y 
 RUN apt-get update -y && apt-get install aptitude -y &&  \
     aptitude install git  aptitude  wget bzip2 \
