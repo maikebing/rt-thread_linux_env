@@ -11,13 +11,13 @@ ENV RTT_EXEC_PATH /opt/gcc-arm-none-eabi-6_2-2016q4/bin/
 #          $(lsb_release -cs) stable" |  tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 RUN apt-get update -y  &&  \
-     apt-get  install python3-pip  python3-requests python  python-pip -y && echo "pip" && pip install requests  &&  && echo "end_pip" && \
+     apt-get  install python3-pip  python3-requests python  python-pip -y && echo "pip" && pip install requests  &&    echo "end_pip" && \
     apt-get clean -y 
 RUN apt-get update -y && apt-get install aptitude -y &&  \
     aptitude install git  aptitude  wget bzip2 \
     build-essential  libncurses-dev  cppcheck   \
-    gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi  qemu-system-arm  -y  \
-    scons && \
+    gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi  qemu-system-arm  -y &&  \
+    scons &&  \
     apt-get clean -y 
 RUN cd /tmp/ &&  wget -q https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/6-2016q4/gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2 && \
     tar xf ./gcc-arm-none-eabi-6_2-2016q4-20161216-linux.tar.bz2 && \
