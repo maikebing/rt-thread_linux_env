@@ -20,10 +20,10 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
     cd / && rm /stm32flash-code  -rf && \
     stm32flash -h
     
-RUN git clone https://gitee.com/RT-Thread-Mirror/env.git  /var/jenkins_home/.env/tools/scripts && \
-    git clone https://gitee.com/RT-Thread-Mirror/packages.git  /var/jenkins_home/.env/packages/packages 
-RUN  sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /var/jenkins_home/.env/tools/scripts/cmds/.config    
-ENV  PATH=$PATH:/var/jenkins_home/.env/tools/scripts
+RUN git clone https://gitee.com/RT-Thread-Mirror/env.git  /env/tools/scripts && \
+    git clone https://gitee.com/RT-Thread-Mirror/packages.git  /env/packages/packages 
+RUN  sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config    
+ENV  PATH=$PATH:/env/tools/scripts
 USER jenkins
 RUN pkgs --help  && scons --help
 
