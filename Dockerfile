@@ -3,7 +3,12 @@ USER root
 LABEL author maikebing <mysticboy@live.com>
 ENV DEBIAN_FRONTEND noninteractive
 ENV RTT_EXEC_PATH /opt/gcc-arm-none-eabi-6_2-2016q4/bin/
-
+RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye main contrib non-free" > /etc/apt/sources.list && \
+	echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-updates main contrib non-free" >> /etc/apt/sources.list && \
+	echo "deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bullseye-backports main contrib non-free" >> /etc/apt/sources.list  && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg |   gpg --dearmor -o /etc/apt/keyrings/docker.gpg  && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/debian \
+         $(lsb_release -cs) stable" |  tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 RUN apt-get update -y  &&  \
      apt-get  install python3-pip  python3-requests python  -y &&  pip install  requests    &&  \
@@ -28,7 +33,7 @@ RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
 RUN  sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config    
 USER jenkins
 ENV  PATH=$PATH:/var/jenkins_home/.env/tools/scripts
-RUN  ln  /env /var/jenkins_home/.env/tools/scripts  -s 
+RUN  ln  /env /var/jenkins_home/.env  -s 
 RUN  pkgs --help  && scons --help
      
 
