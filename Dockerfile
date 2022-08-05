@@ -25,6 +25,6 @@ RUN git clone https://gitee.com/RT-Thread-Mirror/env.git  /env/tools/scripts && 
 RUN  sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config    
 ENV  PATH=$PATH:/env/tools/scripts
 USER jenkins
-RUN pkgs --help  && scons --help
+
 
  
