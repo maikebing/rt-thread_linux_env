@@ -1,6 +1,5 @@
 #!/bin/sh
-if [ ! -r $HOME/.env ] ; then  ln  /env $HOME/.env  -s;fi
-export PATH=$PATH:$HOME/.env/tools/scripts
+
 sed -i -e 's/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=y/CONFIG_SYS_PKGS_DOWNLOAD_ACCELERATE=n/g'  /env/tools/scripts/cmds/.config
 if [ -r SConstruct ]; then
     pkgs --printenv
