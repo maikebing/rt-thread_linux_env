@@ -21,5 +21,6 @@ RUN git clone https://git.code.sf.net/p/stm32flash/code stm32flash-code && \
 RUN git clone https://github.com/RT-Thread/env.git  /env/tools/scripts && \
     git clone https://github.com/RT-Thread/packages.git  /env/packages/packages 
 ENV ENV_ROOT     /env/
+ENV  PATH $PATH:/env/tools/scripts
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN  chmod +x /entrypoint.sh
